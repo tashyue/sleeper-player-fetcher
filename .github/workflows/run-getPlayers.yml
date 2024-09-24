@@ -1,0 +1,27 @@
+name: Run getPlayers Script
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
+  push:
+    branches:
+      - main # Adjust this to your main branch name
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # Use your required Node.js version
+
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run getPlayers script
+        run: npx ts-node src/getPlayers.ts
