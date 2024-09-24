@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "actions@github.com"
-          git add players.json
+          git add src/players.json
           git commit -m "Update players.json"
           git push origin main
