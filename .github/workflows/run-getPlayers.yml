@@ -5,7 +5,7 @@ on:
     - cron: '0 0 * * *' # Runs every day at midnight UTC
   push:
     branches:
-      - main # Adjust this to your main branch name
+      - main
 
 jobs:
   run-script:
@@ -25,3 +25,11 @@ jobs:
         
       - name: Run getPlayers script
         run: npx ts-node src/getPlayers.ts
+        
+      - name: Commit and push players.json
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add players.json
+          git commit -m "Update players.json"
+          git push origin main
